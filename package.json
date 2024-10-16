@@ -80,7 +80,8 @@
   "dependencies": {
     "@pacote/get-style": "2.0.3",
     "@pacote/pixels": "2.0.3",
-    "@pacote/throttle": "2.0.3"
+    "@pacote/throttle": "2.0.3",
+    "littlefoot": "^4.1.2"
   },
   "resolutions": {
     "cypress": "13.15.0"
