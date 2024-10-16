@@ -3,7 +3,11 @@
     "target": "ES5",
     "module": "ESNext",
     "moduleResolution": "Node",
-    "lib": ["ESNext", "DOM", "ScriptHost"],
+    "lib": [
+      "ESNext",
+      "DOM",
+      "ScriptHost"
+    ],
     "declaration": false,
     "strict": true,
     "noUncheckedIndexedAccess": true,
@@ -13,7 +17,10 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "incremental": false,
-    "importHelpers": false
+    "importHelpers": false,
+    "outDir": "./dist"
   },
-  "include": ["./src"]
+  "include": [
+    "./src"
+  ]
 }

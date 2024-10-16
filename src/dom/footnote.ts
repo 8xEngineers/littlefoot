@@ -34,6 +34,24 @@ export function footnoteActions({
 
   const isMounted = () => document.body.contains(popover)
 
+  // copy to clipboard function
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text).then(() => {
+      console.log("Footnote copied to clipboard!");
+    }).catch(err => {
+      console.error("Could not copy text: ", err);
+    });
+  };
+
+  // Create the copy button element
+  const createCopyButton = () => {
+    const copyButton = document.createElement('button');
+    copyButton.textContent = 'Copy';
+    copyButton.className = 'copy-button';
+    copyButton.onclick = () => copyToClipboard(content.textContent || '');
+    popover.appendChild(copyButton); // Append the button to the popover
+  };
+
   return {
     id,
 
@@ -44,6 +62,7 @@ export function footnoteActions({
       button.insertAdjacentElement('afterend', popover)
       popover.style.maxWidth = document.body.clientWidth + 'px'
       maxHeight = getMaxHeight(content)
+      createCopyButton(); // Create the copy button when activating
       onActivate?.(popover, button)
     },
 
