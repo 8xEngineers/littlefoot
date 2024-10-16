@@ -31,8 +31,28 @@ export function footnoteActions({
 }: FootnoteElements): Footnote<HTMLElement> {
   let maxHeight = 0
   let position: Position = 'above'
+  let copyButton: HTMLButtonElement | null = null;
 
   const isMounted = () => document.body.contains(popover)
+
+  // copy to clipboard function
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text).then(() => {
+      console.log("Footnote copied to clipboard!");
+    }).catch(err => {
+      console.error("Could not copy text: ", err);
+    });
+  };
+
+  // Create the copy button element
+  const createCopyButton = (): HTMLButtonElement => {
+    const button = document.createElement('button');
+    button.textContent = 'Copy';
+    button.className = 'copy-button';
+    button.onclick = () => copyToClipboard(content.textContent || '');
+    popover.appendChild(button); // Append the button to the popover
+    return button; // Return the button reference
+  };
 
   return {
     id,
@@ -44,6 +64,7 @@ export function footnoteActions({
       button.insertAdjacentElement('afterend', popover)
       popover.style.maxWidth = document.body.clientWidth + 'px'
       maxHeight = getMaxHeight(content)
+      copyButton = createCopyButton(); // Create the copy button when activating
       onActivate?.(popover, button)
     },
 
@@ -52,6 +73,10 @@ export function footnoteActions({
       addClass(button, CLASS_CHANGING)
       removeClass(button, CLASS_ACTIVE)
       removeClass(popover, CLASS_ACTIVE)
+      if (copyButton) {
+        copyButton.remove(); // Remove the copy button from the popover
+        copyButton = null; // Clear the reference
+      }
       onDismiss?.(popover, button)
     },
 
