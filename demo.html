@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Footnote with Copy Button Example</title>
-    <link rel="stylesheet" href="/src/littlefoot.css"> <!-- Link to Littlefoot CSS -->
-    <script src="/dist/littlefoot.js" defer></script> <!-- Link to Littlefoot JS -->
+    <link rel="stylesheet" href="/dist/littlefoot.css"> <!-- Link to Littlefoot CSS -->
+    <!-- <script src="/dist/littlefoot.js" defer></script> Link to Littlefoot JS -->
 </head>
 
 <body>
@@ -27,27 +27,27 @@
             <ol>
                 <li id="fn:1">
                     <p>This is footnote number 1.
-                        <button class="copy-button"
-                            onclick="copyToClipboard('This is the first footnote. It provides additional information.')">Copy</button>
+                        <!-- <button class="copy-button"
+                            onclick="copyToClipboard('This is the first footnote. It provides additional information.')">Copy</button> -->
                         <a href="#fnref:1" class="reversefootnote">&#160;&#8617;</a>
                     </p>
                 </li>
                 <li id="fn:2">
                     <p>This is footnote number 2.
                         <a href="#fnref:2" class="reversefootnote">&#160;&#8617;</a>
-                        <button class="copy-button"
-                            onclick="copyToClipboard('This is the second footnote. It offers more context about the content.')">Copy</button>
+                        <!-- <button class="copy-button"
+                            onclick="copyToClipboard('This is the second footnote. It offers more context about the content.')">Copy</button> -->
                     </p>
                 </li>
             </ol>
         </aside>
     </article>
 
+    <script src="/dist/littlefoot.js" defer></script>
     <script>
         // Initialize Littlefoot
         document.addEventListener("DOMContentLoaded", function () {
-            const littlefoot = window.Littlefoot; // Make sure the Littlefoot library is loaded
-            littlefoot.init();
+            littlefoot.default();
         });
 
         function copyToClipboard(text) {
@@ -57,6 +57,7 @@
                 console.error("Could not copy text: ", err);
             });
         }
+
 
     </script>
 </body>

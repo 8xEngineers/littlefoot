@@ -17,8 +17,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "incremental": false,
-    "importHelpers": false,
-    "outDir": "./dist"
+    "importHelpers": false
   },
   "include": [
     "./src"
