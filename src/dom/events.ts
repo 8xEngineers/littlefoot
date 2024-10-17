@@ -54,6 +54,23 @@ export function addListeners(useCases: UseCases): () => void {
       useCases.dismissAll()
     }
   }
+
+  const highlight = (event: Event) => {
+    const element = closestTarget(event, '[data-footnote-button]')
+    if (element) {
+      let isToggled = element.getAttribute('highlight-toggled')
+      console.log(isToggled)
+      if (isToggled == 'false'){
+        element.style.backgroundColor = '#FFD700';
+        element.setAttribute('highlight-toggled', 'true')
+      }
+      else{
+        element.style.backgroundColor = "#949494";
+        element.setAttribute('highlight-toggled', 'false')
+      }
+    } 
+  }
+
   const throttledReposition = throttle(useCases.repositionAll, 16)
   const throttledResize = throttle(useCases.resizeAll, 16)
   const showOnHover = hoverHandler(useCases.hover)
@@ -64,6 +81,7 @@ export function addListeners(useCases: UseCases): () => void {
 
   onDocument('touchend', toggleOnTouch, options)
   onDocument('click', toggleOnTouch, options)
+  onDocument('dblclick', highlight, options)
   onDocument('keyup', dismissOnEscape, options)
   onDocument('gestureend', throttledReposition, options)
   onWindow('scroll', throttledReposition, options)
