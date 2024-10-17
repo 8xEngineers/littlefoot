@@ -176,6 +176,7 @@ function createElements<E extends Element>(
 
     const button = host.firstElementChild as HTMLElement
     button.setAttribute('aria-expanded', 'false')
+    button.setAttribute('highlight-toggled', 'false')
     button.dataset.footnoteButton = ''
     button.dataset.footnoteId = id
 
