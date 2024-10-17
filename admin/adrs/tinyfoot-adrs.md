@@ -7,39 +7,23 @@ The key design decision we need to make here is determining the best placement f
 
 ## Considered Options
 
-* Add a button in the popup window
-* Double click on the footnote button
+- Add a button in the popup window
+- Double click on the footnote button
 
 ## Pros and Cons of the Options
 
 ### Add a button in the popup window
 
-* Good, because {argument a}
-* Good, because {argument b}
-<!-- use "neutral" if the given argument weights neither for good nor bad -->
-* Neutral, because {argument c}
-* Bad, because {argument d}
-* … <!-- numbers of pros and cons can vary -->
+- Good, because it's easy for the user to understand how to use it
+- Bad, because it's harder to implement. We want to change the color of footnote button. If we add the button in popup, this action not only involve getting the popup window but also the element of footnote button.
 
 ### Double click on the footnote button
 
-{example | description | pointer to more information | …}
-
-* Good, because {argument a}
-* Good, because {argument b}
-* Neutral, because {argument c}
-* Bad, because {argument d}
+- Good, because it is easier to implement and improves code maintainability, we can place the highlight functionality in "events.ts," which already handles all the events for each footnote element. This ensures consistency and keeps the event management centralized.
+- Bad, because users may not realize that the highlight feature exists unless we include it in the documentation or provide a tutorial.
 
 ## Decision Outcome
 
-Chosen option: "Double click on the footnote button", because {justification. e.g., only option, which meets k.o. criterion decision driver | which resolves force {force} | … | comes out best (see below)}.
-
-<!-- This is an optional element. Feel free to remove. -->
-### Consequences
-
-* Good, because {positive consequence, e.g., improvement of one or more desired qualities, …}
-* Bad, because {negative consequence, e.g., compromising one or more desired qualities, …}
-* … <!-- numbers of consequences can vary -->
-
+Chosen option: "Double click on the footnote button", because the cost of adding documentation or a tutorial is much lower than dealing with poor maintenance or a complex code architecture. Prioritizing simplicity and clarity in the code will ultimately save time and effort in the long run.
 
 # Adding copy button in footnote popup
