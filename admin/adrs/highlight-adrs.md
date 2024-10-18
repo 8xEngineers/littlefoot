@@ -25,5 +25,3 @@ The key design decision we need to make here is determining the best placement f
 ## Decision Outcome
 
 Chosen option: "Double click on the footnote button", because the cost of adding documentation or a tutorial is much lower than dealing with poor maintenance or a complex code architecture. Prioritizing simplicity and clarity in the code will ultimately save time and effort in the long run.
-
-# Adding copy button in footnote popup
