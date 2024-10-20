@@ -1,5 +1,4 @@
 import type { Adapter } from '../use-cases'
-import { addClass, removeClass } from './element'
 import { type FootnoteElements, footnoteActions } from './footnote'
 import { bindScrollHandler } from './scroll'
 
@@ -27,7 +26,7 @@ type TemplateValues = Readonly<{
 const CLASS_PRINT_ONLY = 'littlefoot--print'
 
 const setAllPrintOnly = (...elements: readonly Element[]) =>
-  elements.forEach((e) => addClass(e, CLASS_PRINT_ONLY))
+  elements.forEach((e) => e.classList.add(CLASS_PRINT_ONLY))
 
 function queryAll<E extends Element>(
   parent: ParentNode,
@@ -176,6 +175,7 @@ function createElements<E extends Element>(
 
     const button = host.firstElementChild as HTMLElement
     button.setAttribute('aria-expanded', 'false')
+    button.setAttribute('highlight-toggled', 'false')
     button.dataset.footnoteButton = ''
     button.dataset.footnoteId = id
 
@@ -203,33 +203,42 @@ export function setup({
   numberResetSelector,
   scope,
 }: HTMLAdapterSettings): Adapter<HTMLElement> {
-  const footnotes = findFootnoteLinks(document, anchorPattern, scope)
-    .map(
-      findReference(
-        document,
-        allowDuplicates,
-        anchorParentSelector,
-        footnoteSelector,
-      ),
-    )
-    .filter(isDefined)
-    .map(prepareTemplateData)
-    .map(numberResetSelector ? resetNumbers(numberResetSelector) : (i) => i)
-    .map<[Element, TemplateValues]>(([reference, body, values]) => {
-      setAllPrintOnly(reference, body)
-      recursiveHideFootnoteContainer(body)
-      return [reference, values]
-    })
-    .map(createElements(buttonTemplate, contentTemplate))
-    .map(footnoteActions)
+  // Editing the following code to segment into different function calls instead of chaining 
+  // Helps in debugging and understanding the code
+  const footnoteLinks = findFootnoteLinks(document, anchorPattern, scope);
+  const reference = findReference(document, allowDuplicates, anchorParentSelector, footnoteSelector);
+  // Filtering the footnoteLinks to remove undefined values
+  const filteredFootnoteLinks = footnoteLinks.map(reference).filter(isDefined);
+  // Prepare the template data for the footnotes
+  const templateData = filteredFootnoteLinks.map(prepareTemplateData);
 
+  // Reset the numbers of the footnotes
+  const resetNumbersFn = numberResetSelector ? resetNumbers(numberResetSelector) : (i: [Element, Element, TemplateValues]) => i;
+  const numberedTemplateData = templateData.map(resetNumbersFn);
+
+  // Process the numbered template data
+  const processedTemplateData = numberedTemplateData.map(([reference, body, values]) => {
+    setAllPrintOnly(reference, body);
+    recursiveHideFootnoteContainer(body);
+    return [reference, values];
+  });
+  const createElementsWithTemplates = createElements(buttonTemplate, contentTemplate);
+  const createdElements = processedTemplateData.map(([reference, values]) => {
+    if (reference instanceof Element && values !== undefined && 
+        'number' in values && 'id' in values && 'content' in values && 'reference' in values) {
+      return createElementsWithTemplates([reference, values]);
+    }
+    return null;
+  }).filter((element): element is FootnoteElements => element !== null);
+  const footnotes = createdElements.map(footnoteActions);
+  
   return {
     footnotes,
 
     unmount() {
       footnotes.forEach((footnote) => footnote.destroy())
       queryAll(document, '.' + CLASS_PRINT_ONLY).forEach((element) =>
-        removeClass(element, CLASS_PRINT_ONLY),
+        element.classList.remove(CLASS_PRINT_ONLY),
       )
     },
   }
