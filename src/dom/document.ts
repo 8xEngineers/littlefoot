@@ -1,5 +1,4 @@
 import type { Adapter } from '../use-cases'
-import { addClass, removeClass } from './element'
 import { type FootnoteElements, footnoteActions } from './footnote'
 import { bindScrollHandler } from './scroll'
 
@@ -27,7 +26,7 @@ type TemplateValues = Readonly<{
 const CLASS_PRINT_ONLY = 'littlefoot--print'
 
 const setAllPrintOnly = (...elements: readonly Element[]) =>
-  elements.forEach((e) => addClass(e, CLASS_PRINT_ONLY))
+  elements.forEach((e) => e.classList.add(CLASS_PRINT_ONLY))
 
 function queryAll<E extends Element>(
   parent: ParentNode,
@@ -230,7 +229,7 @@ export function setup({
     unmount() {
       footnotes.forEach((footnote) => footnote.destroy())
       queryAll(document, '.' + CLASS_PRINT_ONLY).forEach((element) =>
-        removeClass(element, CLASS_PRINT_ONLY),
+        element.classList.remove(CLASS_PRINT_ONLY),
       )
     },
   }
