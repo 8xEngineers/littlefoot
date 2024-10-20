@@ -1,6 +1,5 @@
 import { getStyle } from '@pacote/get-style'
 import { pixels } from '@pacote/pixels'
-import { addClass, removeClass } from './element'
 
 export const CLASS_TOOLTIP = 'littlefoot__tooltip'
 
@@ -50,8 +49,8 @@ export function repositionPopover(
   const [next, room] = getFootnotePosition(button, popover)
 
   if (current !== next) {
-    removeClass(popover, 'is-' + current)
-    addClass(popover, 'is-' + next)
+    popover.classList.remove('is-' + current)
+    popover.classList.add('is-' + next)
     const transformX = getLeftRelative(button) * 100 + '%'
     const transformY = next === 'above' ? '100%' : '0'
     popover.style.transformOrigin = transformX + ' ' + transformY

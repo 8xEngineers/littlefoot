@@ -1,5 +1,4 @@
 import { throttle } from '@pacote/throttle'
-import { addClass, removeClass } from './element'
 
 const CLASS_FULLY_SCROLLED = 'is-fully-scrolled'
 
@@ -8,7 +7,7 @@ const scrollHandler = (popover: HTMLElement) => (event: WheelEvent) => {
   const delta = -event.deltaY
 
   if (delta > 0) {
-    removeClass(popover, CLASS_FULLY_SCROLLED)
+    popover.classList.remove(CLASS_FULLY_SCROLLED)
   }
 
   if (
@@ -16,7 +15,7 @@ const scrollHandler = (popover: HTMLElement) => (event: WheelEvent) => {
     delta <= 0 &&
     delta < content.clientHeight + content.scrollTop - content.scrollHeight
   ) {
-    addClass(popover, CLASS_FULLY_SCROLLED)
+    popover.classList.add(CLASS_FULLY_SCROLLED)
   }
 }
 
