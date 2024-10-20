@@ -1,5 +1,4 @@
 import type { Footnote } from '../use-cases'
-import { addClass, hasClass, removeClass } from './element'
 import {
   type Position,
   getLeftInPixels,
@@ -59,8 +58,8 @@ export function footnoteActions({
 
     activate: (onActivate) => {
       button.setAttribute('aria-expanded', 'true')
-      addClass(button, CLASS_CHANGING)
-      addClass(button, CLASS_ACTIVE)
+      button.classList.add(CLASS_CHANGING)
+      button.classList.add(CLASS_ACTIVE)
       button.insertAdjacentElement('afterend', popover)
       popover.style.maxWidth = document.body.clientWidth + 'px'
       maxHeight = getMaxHeight(content)
@@ -70,9 +69,9 @@ export function footnoteActions({
 
     dismiss: (onDismiss) => {
       button.setAttribute('aria-expanded', 'false')
-      addClass(button, CLASS_CHANGING)
-      removeClass(button, CLASS_ACTIVE)
-      removeClass(popover, CLASS_ACTIVE)
+      button.classList.add(CLASS_CHANGING)
+      button.classList.remove(CLASS_ACTIVE)
+      popover.classList.remove(CLASS_ACTIVE)
       if (copyButton) {
         copyButton.remove(); // Remove the copy button from the popover
         copyButton = null; // Clear the reference
@@ -80,18 +79,18 @@ export function footnoteActions({
       onDismiss?.(popover, button)
     },
 
-    isActive: () => hasClass(button, CLASS_ACTIVE),
+    isActive: () => button.classList.contains(CLASS_ACTIVE), 
 
-    isReady: () => !hasClass(button, CLASS_CHANGING),
+    isReady: () => !button.classList.contains(CLASS_CHANGING),
 
     ready: () => {
-      addClass(popover, CLASS_ACTIVE)
-      removeClass(button, CLASS_CHANGING)
+      popover.classList.add(CLASS_ACTIVE)
+      button.classList.remove(CLASS_CHANGING)
     },
 
     remove: () => {
       popover.remove()
-      removeClass(button, CLASS_CHANGING)
+      button.classList.remove(CLASS_CHANGING)
     },
 
     reposition: () => {
@@ -101,10 +100,10 @@ export function footnoteActions({
         content.style.maxHeight = Math.min(maxHeight, height) + 'px'
 
         if (popover.offsetHeight < content.scrollHeight) {
-          addClass(popover, CLASS_SCROLLABLE)
+          popover.classList.add(CLASS_SCROLLABLE)
           content.setAttribute('tabindex', '0')
         } else {
-          removeClass(popover, CLASS_SCROLLABLE)
+          popover.classList.remove(CLASS_SCROLLABLE)
           content.removeAttribute('tabindex')
         }
       }
