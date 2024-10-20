@@ -1,4 +1,5 @@
 import type { Adapter } from '../use-cases'
+import { addClass, removeClass } from './element'
 import { type FootnoteElements, footnoteActions } from './footnote'
 import { bindScrollHandler } from './scroll'
 
@@ -26,7 +27,7 @@ type TemplateValues = Readonly<{
 const CLASS_PRINT_ONLY = 'littlefoot--print'
 
 const setAllPrintOnly = (...elements: readonly Element[]) =>
-  elements.forEach((e) => e.classList.add(CLASS_PRINT_ONLY))
+  elements.forEach((e) => addClass(e, CLASS_PRINT_ONLY))
 
 function queryAll<E extends Element>(
   parent: ParentNode,
@@ -175,7 +176,6 @@ function createElements<E extends Element>(
 
     const button = host.firstElementChild as HTMLElement
     button.setAttribute('aria-expanded', 'false')
-    button.setAttribute('highlight-toggled', 'false')
     button.dataset.footnoteButton = ''
     button.dataset.footnoteId = id
 
@@ -229,7 +229,7 @@ export function setup({
     unmount() {
       footnotes.forEach((footnote) => footnote.destroy())
       queryAll(document, '.' + CLASS_PRINT_ONLY).forEach((element) =>
-        element.classList.remove(CLASS_PRINT_ONLY),
+        removeClass(element, CLASS_PRINT_ONLY),
       )
     },
   }
