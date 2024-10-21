@@ -1,18 +1,18 @@
 import { expect, test } from 'vitest'
-import littlefoot from '../src/littlefoot'
+import tinyfoot from '../src/tinyfoot'
 
 test('allows getting default values', () => {
-  const instance = littlefoot()
+  const instance = tinyfoot()
   expect(instance.getSetting('anchorParentSelector')).toBe('sup')
 })
 
 test('allows getting provided values', () => {
-  const instance = littlefoot({ scope: 'main' })
+  const instance = tinyfoot({ scope: 'main' })
   expect(instance.getSetting('scope')).toBe('main')
 })
 
 test('allows setting values', () => {
-  const lf = littlefoot()
+  const lf = tinyfoot()
   lf.updateSetting('scope', 'article')
   expect(lf.getSetting('scope')).toBe('article')
 })

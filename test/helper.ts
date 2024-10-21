@@ -7,7 +7,7 @@ import { expect } from 'vitest'
 export function getPopoverByText(matcher: string | RegExp): HTMLElement {
   // biome-ignore lint/style/noNonNullAssertion: <explanation>
   return screen
-    .getByText(matcher, { selector: '.littlefoot__popover *' })
+    .getByText(matcher, { selector: '.tinyfoot__popover *' })
     .closest<HTMLElement>('[data-footnote-id]')!
 }
 

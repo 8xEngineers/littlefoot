@@ -1,6 +1,6 @@
 import { createEvent, fireEvent } from '@testing-library/dom'
 import { afterEach, beforeEach, expect, test, vi } from 'vitest'
-import littlefoot from '../src/littlefoot'
+import tinyfoot from '../src/tinyfoot'
 import {
   getButton,
   getPopoverByText,
@@ -19,7 +19,7 @@ afterEach(() => {
 })
 
 test('activate footnote when clicking the button', async () => {
-  littlefoot(TEST_SETTINGS)
+  tinyfoot(TEST_SETTINGS)
   const button = getButton('1')
 
   fireEvent.click(button)
@@ -32,7 +32,7 @@ test('activate footnote when clicking the button', async () => {
 })
 
 test('activation touch event has preventDefault (#57)', async () => {
-  littlefoot(TEST_SETTINGS)
+  tinyfoot(TEST_SETTINGS)
   const button = getButton('1')
 
   const event = createEvent.touchEnd(button)
@@ -41,16 +41,16 @@ test('activation touch event has preventDefault (#57)', async () => {
 })
 
 test('does not insert empty paragraphs in the footnote content (#187)', async () => {
-  littlefoot(TEST_SETTINGS)
+  tinyfoot(TEST_SETTINGS)
   const button = getButton('1')
   fireEvent.click(button)
   await waitToStopChanging(button)
-  expect(document.querySelectorAll('.littlefoot__content p')).toHaveLength(1)
+  expect(document.querySelectorAll('.tinyfoot__content p')).toHaveLength(1)
 })
 
 test('activate footnote by ID when calling .activate()', () => {
   vi.useFakeTimers()
-  const instance = littlefoot({ activateDelay: 200 })
+  const instance = tinyfoot({ activateDelay: 200 })
   const button = getButton('1')
 
   instance.activate('1')
@@ -65,7 +65,7 @@ test('activate footnote by ID when calling .activate()', () => {
 
 test('activate footnote by ID when calling .activate() with a timeout', () => {
   vi.useFakeTimers()
-  const instance = littlefoot({ activateDelay: 200 })
+  const instance = tinyfoot({ activateDelay: 200 })
   const button = getButton('1')
 
   instance.activate('1', 100)
@@ -78,13 +78,13 @@ test('activate footnote by ID when calling .activate() with a timeout', () => {
 })
 
 test('activation with unknown ID does not activate any popovers', () => {
-  const instance = littlefoot({ activateDelay: 0 })
+  const instance = tinyfoot({ activateDelay: 0 })
   instance.activate('invalid')
-  expect(document.querySelector('.littlefoot__popover')).toBeNull()
+  expect(document.querySelector('.tinyfoot__popover')).toBeNull()
 })
 
 test('button and popover state reflected on ARIA properties', async () => {
-  littlefoot(TEST_SETTINGS)
+  tinyfoot(TEST_SETTINGS)
   const button = getButton('1')
 
   fireEvent.click(button)
@@ -94,16 +94,16 @@ test('button and popover state reflected on ARIA properties', async () => {
 })
 
 test('popup layout dimensions', async () => {
-  littlefoot(TEST_SETTINGS)
+  tinyfoot(TEST_SETTINGS)
   const button = getButton('1')
 
   fireEvent.click(button)
 
   await waitToStopChanging(button)
 
-  const popover = document.querySelector('.littlefoot__popover')
+  const popover = document.querySelector('.tinyfoot__popover')
   expect(popover).toHaveStyle(`max-width: ${document.body.clientWidth}px`)
 
-  const content = document.querySelector('.littlefoot__content')
+  const content = document.querySelector('.tinyfoot__content')
   expect(content).toHaveProperty('offsetWidth', document.body.clientWidth)
 })

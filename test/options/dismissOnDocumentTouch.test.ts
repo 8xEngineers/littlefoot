@@ -1,6 +1,6 @@
 import { fireEvent } from '@testing-library/dom'
 import { expect, test } from 'vitest'
-import littlefoot from '../../src/littlefoot'
+import tinyfoot from '../../src/tinyfoot'
 import {
   getAllActiveButtons,
   getButton,
@@ -11,7 +11,7 @@ import {
 
 test('do not dismiss footnote when clicking the document body', async () => {
   setDocumentBody('single.html')
-  littlefoot({
+  tinyfoot({
     dismissOnDocumentTouch: false,
     activateDelay: 0,
     dismissDelay: 0,
@@ -30,7 +30,7 @@ test('do not dismiss footnote when clicking the document body', async () => {
 
 test('dismiss footnote when clicking the button again', async () => {
   setDocumentBody('single.html')
-  littlefoot({
+  tinyfoot({
     dismissOnDocumentTouch: false,
     activateDelay: 0,
     dismissDelay: 0,
@@ -50,7 +50,7 @@ test('dismiss footnote when clicking the button again', async () => {
 
 test('disallow multiple activations', async () => {
   setDocumentBody('default.html')
-  littlefoot({
+  tinyfoot({
     dismissOnDocumentTouch: false,
     activateDelay: 0,
     dismissDelay: 0,

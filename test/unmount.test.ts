@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/dom'
 import { beforeEach, expect, test } from 'vitest'
-import littlefoot from '../src/littlefoot'
+import tinyfoot from '../src/tinyfoot'
 import { setDocumentBody } from './helper'
 
 beforeEach(() => {
@@ -8,16 +8,16 @@ beforeEach(() => {
 })
 
 test('unmount removes all buttons', () => {
-  const instance = littlefoot()
+  const instance = tinyfoot()
   instance.unmount()
-  expect(document.querySelectorAll('.littlefoot')).toHaveLength(0)
+  expect(document.querySelectorAll('.tinyfoot')).toHaveLength(0)
   expect(
     screen.queryByRole('button', { name: /See Footnote/ }),
   ).not.toBeInTheDocument()
 })
 
 test('unmount unhides all footnotes', () => {
-  const instance = littlefoot()
+  const instance = tinyfoot()
   instance.unmount()
-  expect(document.querySelectorAll('.littlefoot--print')).toHaveLength(0)
+  expect(document.querySelectorAll('.tinyfoot--print')).toHaveLength(0)
 })

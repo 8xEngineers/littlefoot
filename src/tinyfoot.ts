@@ -3,7 +3,7 @@ import { addListeners } from './dom/events'
 import { DEFAULT_SETTINGS, type Settings } from './settings'
 import { createUseCases } from './use-cases'
 
-type Littlefoot = Readonly<{
+type tinyfoot = Readonly<{
   activate: (id: string, delay?: number) => void
   dismiss: (id?: string, delay?: number) => void
   unmount: () => void
@@ -11,7 +11,7 @@ type Littlefoot = Readonly<{
   updateSetting: <K extends keyof Settings>(key: K, value: Settings[K]) => void
 }>
 
-export function littlefoot(userSettings: Partial<Settings> = {}): Littlefoot {
+export function tinyfoot(userSettings: Partial<Settings> = {}): tinyfoot {
   const settings = { ...DEFAULT_SETTINGS, ...userSettings }
   const useCases = createUseCases<HTMLElement>(setup(settings), settings)
   const removeListeners = addListeners(useCases)
@@ -44,4 +44,4 @@ export function littlefoot(userSettings: Partial<Settings> = {}): Littlefoot {
   }
 }
 
-export default littlefoot
+export default tinyfoot

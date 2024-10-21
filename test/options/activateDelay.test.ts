@@ -1,6 +1,6 @@
 import { fireEvent } from '@testing-library/dom'
 import { afterEach, expect, test, vi } from 'vitest'
-import littlefoot from '../../src/littlefoot'
+import tinyfoot from '../../src/tinyfoot'
 import { getButton, setDocumentBody } from '../helper'
 
 afterEach(() => {
@@ -11,7 +11,7 @@ test('activateDelay can be set after initialisation', () => {
   vi.useFakeTimers()
   setDocumentBody('single.html')
 
-  const instance = littlefoot({ activateDelay: 0 })
+  const instance = tinyfoot({ activateDelay: 0 })
   instance.updateSetting('activateDelay', 200)
 
   const button = getButton('1')

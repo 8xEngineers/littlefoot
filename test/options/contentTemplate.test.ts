@@ -1,12 +1,12 @@
 import { fireEvent } from '@testing-library/dom'
 import { expect, test } from 'vitest'
-import littlefoot from '../../src/littlefoot'
+import tinyfoot from '../../src/tinyfoot'
 import { getButton, setDocumentBody, waitToStopChanging } from '../helper'
 
 test('setup with default contentTemplate', async () => {
   setDocumentBody('single.html')
 
-  littlefoot({ activateDelay: 1 })
+  tinyfoot({ activateDelay: 1 })
 
   const button = getButton('1')
   fireEvent.click(button)
@@ -18,21 +18,21 @@ test('setup with default contentTemplate', async () => {
     footnotePopover: '',
   })
 
-  const content = footnote?.querySelector('.littlefoot__content')
+  const content = footnote?.querySelector('.tinyfoot__content')
   expect(content).toContainHTML(`This is the document's only footnote.`)
 })
 
 test('setup with custom contentTemplate using <%= %> delimiters', async () => {
   setDocumentBody('single.html')
 
-  littlefoot({
+  tinyfoot({
     activateDelay: 1,
     contentTemplate: `<aside class="custom"
       data-test-id="<%= id %>"
       data-test-number="<%= number %>"
       >
-      <div class="littlefoot__wrapper">
-        <div class="littlefoot__content">
+      <div class="tinyfoot__wrapper">
+        <div class="tinyfoot__content">
           <%= content %>
         </div>
       </div>
@@ -51,21 +51,21 @@ test('setup with custom contentTemplate using <%= %> delimiters', async () => {
     testNumber: '1',
   })
 
-  const content = footnote?.querySelector('.littlefoot__content')
+  const content = footnote?.querySelector('.tinyfoot__content')
   expect(content).toContainHTML(`This is the document's only footnote.`)
 })
 
 test('setup with custom contentTemplate using <% %> delimiters', async () => {
   setDocumentBody('single.html')
 
-  littlefoot({
+  tinyfoot({
     activateDelay: 1,
     contentTemplate: `<aside class="custom"
       data-test-id="<% id %>"
       data-test-number="<% number %>"
       >
-      <div class="littlefoot__wrapper">
-        <div class="littlefoot__content">
+      <div class="tinyfoot__wrapper">
+        <div class="tinyfoot__content">
           <% content %>
         </div>
       </div>
@@ -84,6 +84,6 @@ test('setup with custom contentTemplate using <% %> delimiters', async () => {
     testNumber: '1',
   })
 
-  const content = footnote?.querySelector('.littlefoot__content')
+  const content = footnote?.querySelector('.tinyfoot__content')
   expect(content).toContainHTML(`This is the document's only footnote.`)
 })

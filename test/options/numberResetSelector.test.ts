@@ -1,5 +1,5 @@
 import { beforeEach, expect, test } from 'vitest'
-import littlefoot from '../../src/littlefoot'
+import tinyfoot from '../../src/tinyfoot'
 import { getAllButtons, setDocumentBody } from '../helper'
 
 beforeEach(() => {
@@ -7,7 +7,7 @@ beforeEach(() => {
 })
 
 test('setup with numberResetSelector creates footnotes with duplicate numbers', () => {
-  littlefoot({
+  tinyfoot({
     numberResetSelector: 'article',
     buttonTemplate:
       '<button title="See Footnote <% number %>"><% number %></button>',
@@ -18,7 +18,7 @@ test('setup with numberResetSelector creates footnotes with duplicate numbers', 
 })
 
 test('setup without numberResetSelector creates footnotes with unique numbers', () => {
-  littlefoot({
+  tinyfoot({
     numberResetSelector: undefined,
     buttonTemplate:
       '<button title="See Footnote <% number %>"><% number %></button>',

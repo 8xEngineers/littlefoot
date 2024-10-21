@@ -1,6 +1,6 @@
 @custom-media --breakpoint (width < 768px);
 
-.littlefoot {
+.tinyfoot {
   --button-background-color: #949494;
   --button-text-color: #fff;
   --button-active-background-color: #3f3f3f;
@@ -30,7 +30,7 @@
   position: relative;
 }
 
-.littlefoot__button {
+.tinyfoot__button {
   background-color: var(--button-background-color);
   border-radius: var(--button-border-radius);
   border: var(--button-border, 0);
@@ -60,7 +60,7 @@
   }
 }
 
-.littlefoot__popover {
+.tinyfoot__popover {
   border: var(--popover-border);
   border-radius: var(--popover-border-radius);
   box-shadow: var(--popover-shadow);
@@ -84,13 +84,13 @@
   }
 }
 
-.littlefoot__wrapper {
+.tinyfoot__wrapper {
   border-radius: var(--popover-border-radius);
   position: relative;
   z-index: 1;
 }
 
-.littlefoot__content {
+.tinyfoot__content {
   -webkit-overflow-scrolling: touch;
   background-color: var(--popover-background-color);
   border-radius: var(--popover-border-radius);
@@ -119,7 +119,7 @@
   --arrow-x: calc(-1 * var(--popover-horizontal-padding));
   --arrow-y: calc(var(--popover-vertical-padding) / 2);
 
-  & .littlefoot__content::after {
+  & .tinyfoot__content::after {
     bottom: 0;
     color: var(--popover-scroll-indicator-color);
     content: "\21E3";
@@ -133,12 +133,12 @@
     width: var(--popover-horizontal-padding);
   }
 
-  &.is-fully-scrolled .littlefoot__content::after {
+  &.is-fully-scrolled .tinyfoot__content::after {
     opacity: 0;
   }
 }
 
-.littlefoot__tooltip {
+.tinyfoot__tooltip {
   --tooltip-margin: calc(-1 * var(--popover-tooltip-size));
 
   background-color: var(--popover-background-color);
@@ -151,11 +151,11 @@
   width: calc(2 * var(--popover-tooltip-size));
 }
 
-.is-below .littlefoot__tooltip {
+.is-below .tinyfoot__tooltip {
   top: var(--tooltip-margin);
 }
 
-.is-above .littlefoot__tooltip {
+.is-above .tinyfoot__tooltip {
   bottom: var(--tooltip-margin);
 }
 
@@ -176,7 +176,7 @@
 }
 
 @media (--breakpoint) {
-  .littlefoot__popover {
+  .tinyfoot__popover {
     border-radius: 0;
     border-width: 1px 0 0;
     inset: auto 0 0 !important;
@@ -191,27 +191,27 @@
     }
   }
 
-  .littlefoot__wrapper {
+  .tinyfoot__wrapper {
     border-radius: 0;
     max-width: 100% !important;
     transform: none;
   }
 
-  .littlefoot__tooltip {
+  .tinyfoot__tooltip {
     display: none;
   }
 }
 
 @media not print {
-  .littlefoot--print {
+  .tinyfoot--print {
     display: none;
   }
 }
 
 @media print {
 
-  .littlefoot__popover,
-  .littlefoot__button {
+  .tinyfoot__popover,
+  .tinyfoot__button {
     display: none;
   }
 }

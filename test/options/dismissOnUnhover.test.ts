@@ -1,11 +1,11 @@
 import { fireEvent, waitFor } from '@testing-library/dom'
 import { expect, test } from 'vitest'
-import littlefoot from '../../src/littlefoot'
+import tinyfoot from '../../src/tinyfoot'
 import { getButton, getPopover, setDocumentBody } from '../helper'
 
 test('dismiss on button unhover', async () => {
   setDocumentBody('single.html')
-  littlefoot({
+  tinyfoot({
     activateDelay: 1,
     activateOnHover: true,
     dismissDelay: 1,
@@ -23,7 +23,7 @@ test('dismiss on button unhover', async () => {
 
 test('dismiss on popover unhover', async () => {
   setDocumentBody('single.html')
-  littlefoot({
+  tinyfoot({
     activateDelay: 1,
     activateOnHover: true,
     dismissDelay: 1,

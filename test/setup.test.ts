@@ -1,6 +1,6 @@
 import { fireEvent } from '@testing-library/dom'
 import { beforeEach, expect, test } from 'vitest'
-import littlefoot from '../src/littlefoot'
+import tinyfoot from '../src/tinyfoot'
 import {
   getAllActiveButtons,
   getAllButtons,
@@ -14,62 +14,62 @@ beforeEach(() => {
 })
 
 test('creates one button and one host per footnote call', () => {
-  littlefoot()
-  expect(document.querySelectorAll('.littlefoot')).toHaveLength(4)
+  tinyfoot()
+  expect(document.querySelectorAll('.tinyfoot')).toHaveLength(4)
   expect(getAllButtons()).toHaveLength(4)
 })
 
 test('processes each called footnote', () => {
-  littlefoot()
+  tinyfoot()
   expect(document.querySelectorAll('.footnotes')).toHaveLength(1)
 })
 
 test('hides all footnotes', () => {
-  littlefoot()
+  tinyfoot()
   expect(
-    document.querySelectorAll('.footnotes.littlefoot--print'),
+    document.querySelectorAll('.footnotes.tinyfoot--print'),
   ).toHaveLength(1)
-  expect(document.querySelectorAll('hr.littlefoot--print')).toHaveLength(1)
-  expect(document.querySelectorAll('li.littlefoot--print')).toHaveLength(3)
+  expect(document.querySelectorAll('hr.tinyfoot--print')).toHaveLength(1)
+  expect(document.querySelectorAll('li.tinyfoot--print')).toHaveLength(3)
 })
 
 test('starts with no active footnotes', () => {
-  littlefoot()
+  tinyfoot()
   expect(getAllActiveButtons()).toHaveLength(0)
 })
 
 test('sets ARIA attributes on button', () => {
-  littlefoot()
+  tinyfoot()
   const button = getButton('1')
   expect(button).toHaveAttribute('aria-expanded', 'false')
 })
 
 test('sets up footnotes with a URL before the fragment', () => {
   setDocumentBody('filename.html')
-  littlefoot()
-  expect(document.querySelectorAll('.littlefoot')).toHaveLength(1)
+  tinyfoot()
+  expect(document.querySelectorAll('.tinyfoot')).toHaveLength(1)
   expect(getAllButtons()).toHaveLength(1)
 })
 
 test('strips backlink and its enclosing tags from the footnote body', () => {
   setDocumentBody('backlink.html')
-  littlefoot({ activateDelay: 1 })
+  tinyfoot({ activateDelay: 1 })
   fireEvent.click(getButton('1'))
   expect(getPopover('1').querySelector('sup')).toBeNull()
 })
 
 test('strips backlink and its enclosing tags when they contain whitespace', () => {
   setDocumentBody('backlink.html')
-  littlefoot({ activateDelay: 1 })
+  tinyfoot({ activateDelay: 1 })
   fireEvent.click(getButton('2'))
   expect(getPopover('2').querySelector('sup')).toBeNull()
 })
 
 test('preserves empty tags and square brackets elsewhere in the footnote body', () => {
   setDocumentBody('backlink.html')
-  littlefoot({ activateDelay: 1 })
+  tinyfoot({ activateDelay: 1 })
   fireEvent.click(getButton('1'))
-  const content = getPopover('1').querySelector('.littlefoot__content')
+  const content = getPopover('1').querySelector('.tinyfoot__content')
   expect(content?.querySelector('hr')).not.toBeNull()
   expect(content).toContainHTML(
     'This footnote has a backlink wrapped in [] and an element.',
@@ -78,7 +78,7 @@ test('preserves empty tags and square brackets elsewhere in the footnote body', 
 
 test('wraps bare footnote body in a paragraph tag', () => {
   setDocumentBody('barebody.html')
-  littlefoot({ activateDelay: 1 })
+  tinyfoot({ activateDelay: 1 })
   fireEvent.click(getButton('1'))
   expect(getPopover('1').querySelector('p')).toContainHTML(
     'The original footnote body is bare.',
@@ -86,7 +86,7 @@ test('wraps bare footnote body in a paragraph tag', () => {
 })
 
 test('footnote button accessibility', async () => {
-  littlefoot()
+  tinyfoot()
   const button = getButton('1')
 
   expect(button).toHaveAccessibleName()
@@ -95,7 +95,7 @@ test('footnote button accessibility', async () => {
 
 test('handles empty footnotes reasonably', () => {
   setDocumentBody('empty.html')
-  littlefoot()
-  expect(document.querySelectorAll('.littlefoot')).toHaveLength(3)
+  tinyfoot()
+  expect(document.querySelectorAll('.tinyfoot')).toHaveLength(3)
   expect(getAllButtons()).toHaveLength(3)
 })

@@ -1,6 +1,6 @@
 import { fireEvent } from '@testing-library/dom'
 import { afterEach, beforeEach, expect, test, vi } from 'vitest'
-import littlefoot from '../../src/littlefoot'
+import tinyfoot from '../../src/tinyfoot'
 import {
   getAllActiveButtons,
   getButton,
@@ -18,7 +18,7 @@ afterEach(() => {
 
 test('disallow multiple activations', () => {
   vi.useFakeTimers()
-  littlefoot({ allowMultiple: false })
+  tinyfoot({ allowMultiple: false })
 
   const one = getButton('1')
   fireEvent.click(one)
@@ -32,7 +32,7 @@ test('disallow multiple activations', () => {
 })
 
 test('activate multiple footnotes on click', async () => {
-  littlefoot({ activateDelay: 1, allowMultiple: true })
+  tinyfoot({ activateDelay: 1, allowMultiple: true })
 
   const one = getButton('1')
   fireEvent.click(one)
@@ -46,7 +46,7 @@ test('activate multiple footnotes on click', async () => {
 })
 
 test('activate multiple footnotes on hover', async () => {
-  littlefoot({ activateDelay: 1, activateOnHover: true, allowMultiple: true })
+  tinyfoot({ activateDelay: 1, activateOnHover: true, allowMultiple: true })
 
   const one = getButton('1')
   fireEvent.mouseOver(one)
@@ -60,7 +60,7 @@ test('activate multiple footnotes on hover', async () => {
 })
 
 test('activate multiple buttons when calling .activate()', async () => {
-  const instance = littlefoot({ activateDelay: 1, allowMultiple: true })
+  const instance = tinyfoot({ activateDelay: 1, allowMultiple: true })
 
   const b1 = getButton('1')
   const b2 = getButton('2')
@@ -77,7 +77,7 @@ test('activate multiple buttons when calling .activate()', async () => {
 })
 
 test('dismiss multiple buttons when calling .dismiss()', async () => {
-  const instance = littlefoot({
+  const instance = tinyfoot({
     activateDelay: 1,
     dismissDelay: 1,
     allowMultiple: true,
@@ -100,7 +100,7 @@ test('dismiss multiple buttons when calling .dismiss()', async () => {
 })
 
 test('programmatic activation dismisses others when multiples are disallowed', async () => {
-  const instance = littlefoot({
+  const instance = tinyfoot({
     activateDelay: 1,
     dismissDelay: 1,
     allowMultiple: false,

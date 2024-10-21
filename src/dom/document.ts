@@ -2,8 +2,8 @@ import type { Adapter } from '../use-cases'
 import { type FootnoteElements, footnoteActions } from './footnote'
 import { bindScrollHandler } from './scroll'
 
-export const CLASS_CONTENT = 'littlefoot__content'
-export const CLASS_WRAPPER = 'littlefoot__wrapper'
+export const CLASS_CONTENT = 'tinyfoot__content'
+export const CLASS_WRAPPER = 'tinyfoot__wrapper'
 
 export type HTMLAdapterSettings = Readonly<{
   allowDuplicates: boolean
@@ -23,7 +23,7 @@ type TemplateValues = Readonly<{
   reference: string
 }>
 
-const CLASS_PRINT_ONLY = 'littlefoot--print'
+const CLASS_PRINT_ONLY = 'tinyfoot--print'
 
 const setAllPrintOnly = (...elements: readonly Element[]) =>
   elements.forEach((e) => e.classList.add(CLASS_PRINT_ONLY))
@@ -170,7 +170,7 @@ function createElements<E extends Element>(
     const id = values.id
 
     const host = createElementFromHTML(
-      '<span class="littlefoot">' + renderButton(values) + '</span>',
+      '<span class="tinyfoot">' + renderButton(values) + '</span>',
     )
 
     const button = host.firstElementChild as HTMLElement

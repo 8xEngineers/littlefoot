@@ -1,6 +1,6 @@
 import { fireEvent, screen } from '@testing-library/dom'
 import { beforeEach, expect, test } from 'vitest'
-import littlefoot from '../src/littlefoot'
+import tinyfoot from '../src/tinyfoot'
 import {
   getButton,
   getPopover,
@@ -16,7 +16,7 @@ beforeEach(() => {
 })
 
 test('dismiss footnote when clicking the button again', async () => {
-  littlefoot(TEST_SETTINGS)
+  tinyfoot(TEST_SETTINGS)
   const button = getButton('1')
   fireEvent.click(button)
   await waitToStopChanging(button)
@@ -27,14 +27,14 @@ test('dismiss footnote when clicking the button again', async () => {
   await waitToStopChanging(button)
   expect(
     screen.queryByText(/This is the document's only footnote./, {
-      selector: '.littlefoot__popover *',
+      selector: '.tinyfoot__popover *',
     }),
   ).not.toBeInTheDocument()
   expect(button).not.toHaveClass('is-active')
 })
 
 test('deactivate popover when dismissing a footnote', async () => {
-  littlefoot(TEST_SETTINGS)
+  tinyfoot(TEST_SETTINGS)
   const button = getButton('1')
   fireEvent.click(button)
   await waitToStopChanging(button)
@@ -46,7 +46,7 @@ test('deactivate popover when dismissing a footnote', async () => {
 })
 
 test('dismiss footnote when clicking the document body', async () => {
-  littlefoot(TEST_SETTINGS)
+  tinyfoot(TEST_SETTINGS)
 
   const button = getButton('1')
   fireEvent.click(button)
@@ -60,7 +60,7 @@ test('dismiss footnote when clicking the document body', async () => {
 })
 
 test('do not dismiss footnote when clicking the popover', async () => {
-  littlefoot(TEST_SETTINGS)
+  tinyfoot(TEST_SETTINGS)
 
   const button = getButton('1')
   fireEvent.click(button)
@@ -74,7 +74,7 @@ test('do not dismiss footnote when clicking the popover', async () => {
 })
 
 test('dismiss a single footnote by ID when calling .dismiss()', async () => {
-  const instance = littlefoot(TEST_SETTINGS)
+  const instance = tinyfoot(TEST_SETTINGS)
 
   const button = getButton('1')
   instance.activate('1')
@@ -88,7 +88,7 @@ test('dismiss a single footnote by ID when calling .dismiss()', async () => {
 })
 
 test('dismiss all footnotes when calling .dismiss()', async () => {
-  const instance = littlefoot(TEST_SETTINGS)
+  const instance = tinyfoot(TEST_SETTINGS)
 
   const button = getButton('1')
   instance.activate('1')
@@ -104,7 +104,7 @@ test('dismiss all footnotes when calling .dismiss()', async () => {
 test.each([[{ keyCode: 27 }, { key: 'Escape' }, { key: 'Esc' }]])(
   'dismiss footnote when pressing the Escape key',
   async (options) => {
-    littlefoot(TEST_SETTINGS)
+    tinyfoot(TEST_SETTINGS)
     const button = getButton('1')
     fireEvent.click(button)
     await waitToStopChanging(button)
@@ -117,7 +117,7 @@ test.each([[{ keyCode: 27 }, { key: 'Escape' }, { key: 'Esc' }]])(
 )
 
 test('does not dismiss footnote when pressing any other key', async () => {
-  littlefoot(TEST_SETTINGS)
+  tinyfoot(TEST_SETTINGS)
   const button = getButton('1')
   fireEvent.click(button)
   await waitToStopChanging(button)
@@ -128,7 +128,7 @@ test('does not dismiss footnote when pressing any other key', async () => {
 })
 
 test('set ARIA expanded state to false', async () => {
-  littlefoot(TEST_SETTINGS)
+  tinyfoot(TEST_SETTINGS)
 
   const button = getButton('1')
 

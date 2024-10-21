@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/dom'
 import { beforeEach, expect, test } from 'vitest'
-import littlefoot from '../../src/littlefoot'
+import tinyfoot from '../../src/tinyfoot'
 import { getButton, setDocumentBody } from '../helper'
 
 beforeEach(() => {
@@ -8,7 +8,7 @@ beforeEach(() => {
 })
 
 test('default buttonTemplate', () => {
-  littlefoot()
+  tinyfoot()
 
   const button = getButton('1')
   expect(button.id).toBe('lf-fnref:1')
@@ -19,7 +19,7 @@ test('default buttonTemplate', () => {
 })
 
 test('custom buttonTemplate using <%= %> delimiters', () => {
-  littlefoot({
+  tinyfoot({
     buttonTemplate: `<button
       title="Footnote <%= number %>"
       data-test-content="<%= content %>"
@@ -43,7 +43,7 @@ test('custom buttonTemplate using <%= %> delimiters', () => {
 })
 
 test('custom buttonTemplate using <% %> delimiters', () => {
-  littlefoot({
+  tinyfoot({
     buttonTemplate: `<button
       title="Footnote <% number %>"
       data-test-content="<% content %>"

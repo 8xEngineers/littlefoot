@@ -1,14 +1,14 @@
 {
-  "name": "littlefoot",
+  "name": "tinyfoot",
   "description": "Footnotes without the footprint.",
   "version": "4.1.2",
   "sideEffects": false,
   "license": "MIT",
-  "repository": "goblindegook/littlefoot",
+  "repository": "goblindegook/tinyfoot",
   "scripts": {
     "clean": "rm -rf coverage dist",
     "build:scripts": "rollup --config --bundleConfigAsCjs",
-    "build:styles": "postcss src/littlefoot.css --output dist/littlefoot.css",
+    "build:styles": "postcss src/tinyfoot.css --output dist/tinyfoot.css",
     "build:types": "tsc --declaration --emitDeclarationOnly --declarationDir dist",
     "build": "npm run clean && mkdir -p dist && concurrently 'npm run build:types' 'npm run build:scripts' 'npm run build:styles'",
     "commit": "git-cz",
@@ -37,11 +37,11 @@
     "email": "hello@goblindegook.net",
     "url": "https://goblindegook.com/"
   },
-  "browser": "dist/littlefoot.js",
-  "main": "dist/littlefoot.cjs.js",
-  "module": "dist/littlefoot.mjs",
-  "typings": "dist/littlefoot.d.ts",
-  "style": "dist/littlefoot.css",
+  "browser": "dist/tinyfoot.js",
+  "main": "dist/tinyfoot.cjs.js",
+  "module": "dist/tinyfoot.mjs",
+  "typings": "dist/tinyfoot.d.ts",
+  "style": "dist/tinyfoot.css",
   "browserslist": [
     "defaults"
   ],

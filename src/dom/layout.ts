@@ -1,7 +1,7 @@
 import { getStyle } from '@pacote/get-style'
 import { pixels } from '@pacote/pixels'
 
-export const CLASS_TOOLTIP = 'littlefoot__tooltip'
+export const CLASS_TOOLTIP = 'tinyfoot__tooltip'
 
 export type Position = 'above' | 'below'
 

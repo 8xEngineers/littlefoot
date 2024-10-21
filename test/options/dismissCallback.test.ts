@@ -1,6 +1,6 @@
 import { fireEvent } from '@testing-library/dom'
 import { expect, test, vi } from 'vitest'
-import littlefoot from '../../src/littlefoot'
+import tinyfoot from '../../src/tinyfoot'
 import {
   getButton,
   getPopover,
@@ -11,7 +11,7 @@ import {
 test('setup with dismissCallback', async () => {
   setDocumentBody('single.html')
   const dismissCallback = vi.fn()
-  littlefoot({ dismissCallback })
+  tinyfoot({ dismissCallback })
 
   const button = getButton('1')
 
@@ -30,7 +30,7 @@ test('dismissCallback can be set after initialisation', async () => {
   setDocumentBody('single.html')
   const dismissCallback = vi.fn()
 
-  const instance = littlefoot()
+  const instance = tinyfoot()
   instance.updateSetting('dismissCallback', dismissCallback)
 
   const button = getButton('1')

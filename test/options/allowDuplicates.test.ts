@@ -1,21 +1,21 @@
 import { expect, test } from 'vitest'
-import littlefoot from '../../src/littlefoot'
+import tinyfoot from '../../src/tinyfoot'
 import { getAllButtons, setDocumentBody } from '../helper'
 
 test('create one button per footnote reference', () => {
   setDocumentBody('default.html')
-  littlefoot({ allowDuplicates: true })
+  tinyfoot({ allowDuplicates: true })
   expect(getAllButtons()).toHaveLength(4)
 })
 
 test('ignore duplicate footnote references', () => {
   setDocumentBody('default.html')
-  littlefoot({ allowDuplicates: false })
+  tinyfoot({ allowDuplicates: false })
   expect(getAllButtons()).toHaveLength(3)
 })
 
 test('create all buttons when footnotes are in different containers', () => {
   setDocumentBody('multiple.html')
-  littlefoot({ allowDuplicates: false })
+  tinyfoot({ allowDuplicates: false })
   expect(getAllButtons()).toHaveLength(5)
 })
