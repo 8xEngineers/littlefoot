@@ -4,7 +4,7 @@
   "version": "4.1.2",
   "sideEffects": false,
   "license": "MIT",
-  "repository": "goblindegook/tinyfoot",
+  "repository": "8xEngineers/cse210-tinyfoot-team12",
   "scripts": {
     "clean": "rm -rf coverage dist",
     "build:scripts": "rollup --config --bundleConfigAsCjs",
