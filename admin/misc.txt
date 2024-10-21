@@ -1,0 +1,59 @@
+Date : 13th October 
+
+Introduction
+Everybody can just talk about what they are doing, their background, hobbies or fun facts.
+If you have any ideas for our team name, just drop them in the chat ☺️
+
+Warm-up project
+Little Foot: Madhusudan, Kirsten, Matcha, Jialin
+Big Foot: Botao, Hanzhe, Sudhansh, Asara
+
+Each person responsible for the assigned repo’s code review. Can collaborate on the Google doc first and turn it into a markdown later.
+
+Meeting after class on Tuesday
+Before this meeting, please look into the code you are responsible for so we can have a deeper discussion about the actual implementation.
+
+
+Date: 15th October
+
+We discussed the bigfoot and littlefoot frameworks. The following keypoints highlight the main features of both the frameworks
+
+Bigfoot
+A basic jQuery plugin that provides footnote customization making it easy for users to show pop-ups for footnotes in a document. It provides 3 theming options (can be seen on website), and is mainly written using Coffeescript (think of it as a wrapper for Javascript) and Sass (Advanced CSS).
+
+Advantages - Simple, provides many customization options
+
+Disadvantages -
+
+The customization options are available in the source code making it difficult for users to modify scripts.
+The code is very old and is not maintained anymore, the source code is not modular - making it difficult for customizations for the library
+Littlefoot
+A modification of bigfoot aimed to simplify the framework. Written using typescript, the library is heavily simplified providing minimal customization options for the users that can directly be edited from the HTML code.
+
+Advantages -
+
+Modularized code making it easy for adding customizations
+Written in typescript - modern standards
+Disadvantages -
+
+We didn’t really see any disadvantages for this. We ideally should
+Proposed Ideas
+Given this, the modification ideas we came up with are -
+
+Part 1: Provide customization options to users in the HTML interface. For example, we can add the scope functionality from littlefoot to allow users to control which footnotes are affected by bigfoot.
+Part 2: Try nested footnotes with littlefoot - pop-over on pop-over. Not sure if this is useful to any users, but is a good engineering problem for the assignment
+Part 3: We proposed providing easier interface options to customize footnotes in littlefoot. However, it seems like littlefoot already is providing these options. We need to think of something for this.
+Deadlines
+
+Check the feasibility of each of the ideas mentioned above individually and discuss with others about the exact plan of implementation. If you think it is not feasible to do something, provide a backup idea. This has to be done by today evening.
+We will distribute the specific coding tasks by tonight. We need two people for documentation and report generation. Another person focusing on creating demos and updating the website, managing Github. These three people work together but the focus from each person is as highlighted above. Let us distribute the tasks by end of today.
+Let us meet after class tomorrow and try to get basic version of the code, report, website, demos ready by the end of the meeting.
+Important!! If Grad Housing is convenient for everyone, try to work together in the conference rooms. Whenever you are working on CSE210, do drop a message and ping others to join you
+
+References
+Changes in littlefoot from bigfoot - https://littlefoot.js.org/CHANGELOG.html#differences-from-bigfootjs
+Our Report document - https://docs.google.com/document/d/1NoBoVAaeMzSiCvuiK0Qg7RPmTjf8CeMzdYSaJ7awI20/edit?usp=sharing
+GitHub organization - https://github.com/orgs/8xEngineers/dashboard
+Notion documentation workspace - https://www.notion.so/team/121f8a2e-14dc-8154-86a1-00423e9e57b0/join
+
+
