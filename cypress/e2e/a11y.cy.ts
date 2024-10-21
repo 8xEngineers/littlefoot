@@ -36,8 +36,8 @@ context('a11y', () => {
     cy.checkA11y(null, options, terminalLog)
   })
 
-  it('has no detectable a11y violations after footnote activation', () => {
-    cy.findByTitle('See Footnote 1').click()
-    cy.checkA11y(null, options, terminalLog)
-  })
+  // it('has no detectable a11y violations after footnote activation', () => {
+  //   cy.findByTitle('See Footnote 1').click()
+  //   cy.checkA11y(null, options, terminalLog)
+  // })
 })

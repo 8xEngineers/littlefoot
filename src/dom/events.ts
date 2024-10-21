@@ -58,17 +58,17 @@ export function addListeners(useCases: UseCases): () => void {
   const highlight = (event: Event) => {
     const element = closestTarget(event, '[data-footnote-button]')
     if (element) {
-      let isToggled = element.getAttribute('highlight-toggled')
+      const isToggled = element.getAttribute('highlight-toggled')
       console.log(isToggled)
-      if (isToggled == 'false'){
+      if (isToggled === 'false') {
         element.style.backgroundColor = '#FFD700';
         element.setAttribute('highlight-toggled', 'true')
       }
-      else{
+      else {
         element.style.backgroundColor = "#949494";
         element.setAttribute('highlight-toggled', 'false')
       }
-    } 
+    }
   }
 
   const throttledReposition = throttle(useCases.repositionAll, 16)
